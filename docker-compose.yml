@@ -1,0 +1,16 @@
+version: '3'
+services:
+  tealium-pyspark-notebook:
+    user: root
+    privileged: true
+    build: .
+    #image: tealium/pyspark-notebook
+    restart: always
+    volumes:
+      - ./notebooks:/opt/notebooks
+      - ./data:/opt/data
+      - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro
+    environment:
+      - GRANT_SUDO=yes
+    ports:
+      - "8558:8558"
