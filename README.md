@@ -2,7 +2,7 @@
 
 Alternatively: 
 `docker build --rm -t jupyter/my-spark-nb .`
-`docker run -it --rm -p 8888:8888 jupyter/pyspark-notebook start.sh jupyter lab`
+`docker run -it --rm -p 8558:8558 jupyter/pyspark-notebook start.sh jupyter lab`
 
 https://medium.com/@ntruong/jupyterlab-setup-for-my-data-team-84e5724d1bea
 
