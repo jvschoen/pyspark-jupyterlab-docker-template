@@ -5,6 +5,9 @@
         },
         {
             "path": "../shell_scripts"
+        },
+        {
+            "path": "../test-template-2"
         }
     ]
 }
