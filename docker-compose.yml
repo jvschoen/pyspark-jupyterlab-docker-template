@@ -1,10 +1,9 @@
 version: '3'
 services:
-  tealium-pyspark-notebook:
+  <INPUT NAME HERE>:
     user: root
     privileged: true
     build: .
-    #image: tealium/pyspark-notebook
     restart: always
     volumes:
       - ./notebooks:/opt/notebooks
