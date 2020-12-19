@@ -12,6 +12,10 @@ Steps
 
 This will create a docker image with the same name as the repo created and cloned locally. Now you can access JupyterLab where the home drive mirrors the project drive from the local OS.
 
+During the build a build, this readme will be replaced with an empty readme and git will already be initialized. You will be able to open a jupyter notebook and freely run spark. 
+
+
+
 
 
 
@@ -24,9 +28,6 @@ https://stackoverflow.com/questions/57138221/error-trying-to-access-aws-s3-using
 
 https://www.jitsejan.com/integrating-pyspark-notebook-with-s3.html
 
-Must go install jupyterlab/toc
-and go to advanced settings and override default to be true:
-`{"collapsibleNotebooks": true}`
 
 spark_version: The Spark version to install (3.0.0).
 hadoop_version: The Hadoop version (3.2).

@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y locales \
     && locale-gen
 
 # Add config to Jupyter notebook
-COPY jupyter/jupyter_notebook_config.py /home/jovyan/.jupyter/
+COPY extras/jupyter/jupyter_notebook_config.py /home/jovyan/.jupyter/
 USER root
 RUN chmod -R 777 /home/jovyan/
 
@@ -36,7 +36,7 @@ RUN pip install -r /home/jovyan/requirements.txt
 
 # Custom styling
 RUN mkdir -p /home/jovyan/.jupyter/custom
-COPY --chown=$NB_UID:$NB_UID custom/custom.css /home/jovyan/.jupyter/custom/
+COPY --chown=$NB_UID:$NB_UID extras/custom/custom.css /home/jovyan/.jupyter/custom/
 
 # NB extensions
 # TO be able to use table of contents
@@ -48,10 +48,15 @@ RUN pip install --upgrade jupyterlab-git
 COPY --chown=$NB_UID:$NB_UID ./notebooks /home/jovyan/notebooks
 COPY --chown=$NB_UID:$NB_UID ./data /home/jovyan/data
 
+RUN echo "converting README"
+RUN mv extras/README.md ./README.md
+
 USER root
 RUN chmod -R 777 /home/jovyan/
 
 USER $NB_UID
+
+
 
 
 # Run the notebook
