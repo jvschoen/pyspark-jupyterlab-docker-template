@@ -49,7 +49,7 @@ COPY --chown=$NB_UID:$NB_UID ./notebooks /home/jovyan/notebooks
 COPY --chown=$NB_UID:$NB_UID ./data /home/jovyan/data
 
 RUN echo "converting README"
-RUN mv extras/README.md ./README.md
+COPY --chown=$NB_UID:$NB_UID ./extras/README.md /home/joyvan/README.md
 
 USER root
 RUN chmod -R 777 /home/jovyan/
