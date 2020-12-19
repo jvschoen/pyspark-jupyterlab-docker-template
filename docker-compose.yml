@@ -1,14 +1,16 @@
 version: '3'
 services:
-  tealium-pyspark-notebook:
+  # TODO: PUT SERVICE NAME HERE. good to match project name.
+  INPUT_NAME_HERE:
     user: root
     privileged: true
     build: .
-    #image: tealium/pyspark-notebook
     restart: always
     volumes:
-      - ./notebooks:/opt/notebooks
-      - ./data:/opt/data
+      #- ./notebooks:/home/jovyan/notebooks
+      #- ./data:/home/jovyan/data
+      # This ensures we can just have the key in one central location for local and on docker
+      # If this image ends up being pushed to the cloud, then the file must be copied.
       - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro
     environment:
       - GRANT_SUDO=yes
