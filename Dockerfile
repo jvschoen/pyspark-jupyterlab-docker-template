@@ -39,6 +39,8 @@ RUN mkdir -p /home/jovyan/.jupyter/custom
 COPY --chown=$NB_UID:$NB_UID custom/custom.css /home/jovyan/.jupyter/custom/
 
 # NB extensions
+# TO be able to use table of contents
+RUN pip install --upgrade jupyterlab-git
 #RUN jupyter labextension install @jupyterlab/toc
 #RUN jupyter contrib nbextension install --user
 #RUN jupyter nbextensions_configurator enable --user
@@ -50,6 +52,7 @@ USER root
 RUN chmod -R 777 /home/jovyan/
 
 USER $NB_UID
+
 
 # Run the notebook
 CMD ["/opt/conda/bin/jupyter", "lab", "--allow-root", "--port", "8558"]
