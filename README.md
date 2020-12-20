@@ -21,6 +21,13 @@ During the build a build, this readme will be replaced with an empty readme and 
 In order for access to AWS services, you must have the `~/.aws/credentials` on your local environment. The Docker instance has mounted this file as an external volume, so as you update your credentials locally, they will be live on your docker instance. This file is **not editable** from your docker instance, and only editable from your local OS.
 
 
+# Sharing Images
+
+https://stackoverflow.com/questions/24482822/how-to-share-my-docker-image-without-using-the-docker-hub
+
+* Use `docker save dockerizeit/agent > dk.agent.latest.tar`
+* You can share this and hae recipient use docker load on a different host to use this image
+* Better approach is using something like docker hub or Amazon Elastic Container Registry (ECR) to be a container registry.
 
 
 
