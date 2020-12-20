@@ -1,7 +1,7 @@
 version: '3'
 services:
-  # TODO: PUT SERVICE NAME HERE. good to match project name.
-  INPUT_NAME_HERE:
+  # TODO: PUT SERVICE NAME HERE. good to match project/repo name.
+  INSERT_REPO_NAME:
     user: root
     privileged: true
     build: .

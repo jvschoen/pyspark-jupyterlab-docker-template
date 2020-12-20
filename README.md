@@ -1,8 +1,9 @@
-Options:
-Creat github repo from template with dockerfile 
+# Overview
+This is a Data Science pyspark project creator. It creates a standard docker environment running jupyterlab and pyspark 3.0.
 
+Creating a repo from this template will allow the jupyter instance to already by connected to a remote github repo so all work can be easily version controlled in github.
 
-This is a Data Science pyspark project creator. 
+When in jupyterlab, there is a folder labeled `project` which mirrors the github repo mentioned above. Work from the project folder and your work will be tracked in the project's github repo
 
 Steps
 1. Create a new Github Repo from this template
