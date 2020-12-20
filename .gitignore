@@ -3,3 +3,5 @@ zArchive/
 venv/
 .idea
 *.code-workspace
+
+.ipynb_checkpoints

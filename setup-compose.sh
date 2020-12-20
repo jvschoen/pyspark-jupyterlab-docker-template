@@ -1,3 +1,7 @@
+# This script is used to create the docker image with the proper service name
+# Mirroring the github repo name
+
+
 # Get the name of the repo
 repo_name=$(basename -s .git `git config --get remote.origin.url`)
 
