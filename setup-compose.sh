@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # This script is used to create the docker image with the proper service name
 # Mirroring the github repo name
 
