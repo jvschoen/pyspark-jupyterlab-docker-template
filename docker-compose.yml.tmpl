@@ -9,13 +9,6 @@ services:
     build: .
     restart: always
     volumes:
-      # We are mounting these so that our notebooks and data are stored on local OS as part of the github repo
-      #- ./notebooks:/home/jovyan/project/notebooks
-      #- ./data:/home/jovyan/project/data
-      
-      # Keeping the local git and image git repo in sync
-      #- ./.git:/home/jovyan/project/.gig
-      
       # Mounting the project dir to the local git repo dir to keep local in sync with remote work
       - ./:home/jovyan/project
 
