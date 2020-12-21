@@ -9,8 +9,9 @@ services:
     build: .
     restart: always
     volumes:
-      #- ./notebooks:/home/jovyan/project/notebooks
-      #- ./data:/home/jovyan/project/data
+      # Mounting the project dir to the local git repo dir to keep local in sync with remote work
+      - ./:/home/jovyan/project
+
       # This ensures we can just have the key in one central location for local and on docker
       # If this image ends up being pushed to the cloud, then the file must be copied.
       - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro
@@ -19,3 +20,4 @@ services:
       - JUPYTER_ENABLE_LAB=yes
     ports:
       - "8558:8558"
+      - "4040-4080:4040-4080"
