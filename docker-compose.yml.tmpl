@@ -11,7 +11,7 @@ services:
     volumes:
       # Mounting the project dir to the local git repo dir to keep local in sync with remote work
       - ./:home/jovyan/project
-
+      
       # This ensures we can just have the key in one central location for local and on docker
       # If this image ends up being pushed to the cloud, then the file must be copied.
       - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro

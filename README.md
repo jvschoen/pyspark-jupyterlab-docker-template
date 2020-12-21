@@ -27,6 +27,7 @@ Once you make changes to your code, git commit and push to github, all code will
 In order for access to AWS services, you must have the `~/.aws/credentials` on your local environment. The Docker instance has mounted this file as an external volume, so as you update your credentials locally, they will be live on your docker instance. This file is **not editable** from your docker instance, and only editable from your local OS.
 
 
+
 # New Project Overview
 
 Once the docker image has been built above, then the following should be followed to get the notebook set up with table of contents extension and to understand how git is managed.

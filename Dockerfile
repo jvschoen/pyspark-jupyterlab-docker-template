@@ -3,7 +3,7 @@ FROM jupyter/pyspark-notebook
 USER root
 
 # Add essential packages
-RUN apt-get update && apt-get install -y build-essential curl git gnupg2 nano apt-transport-https software-properties-common
+RUN apt-get update && apt-get install -y build-essential curl git gnupg2 nano apt-transport-https software-properties-common openssh-client
 
 # Set locale
 RUN apt-get update && apt-get install -y locales \
