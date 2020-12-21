@@ -8,8 +8,9 @@ services:
     build: .
     restart: always
     volumes:
-      #- ./notebooks:/home/jovyan/notebooks
-      #- ./data:/home/jovyan/data
+      # We are mounting these so that our notebooks and data are stored on local OS as part of the github repo
+      - ./notebooks:/home/jovyan/project/notebooks
+      - ./data:/home/jovyan/project/data
       # This ensures we can just have the key in one central location for local and on docker
       # If this image ends up being pushed to the cloud, then the file must be copied.
       - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro
