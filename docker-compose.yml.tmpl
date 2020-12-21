@@ -3,18 +3,27 @@ services:
   # TODO: PUT SERVICE NAME HERE. good to match project/repo name.
   # Running th startup-compose.sh script will automatically replace this.
   INSERT_REPO_NAME:
+    container_name: jupyter
     user: root
     privileged: true
     build: .
     restart: always
     volumes:
       # We are mounting these so that our notebooks and data are stored on local OS as part of the github repo
-      - ./notebooks:/home/jovyan/project/notebooks
-      - ./data:/home/jovyan/project/data
+      #- ./notebooks:/home/jovyan/project/notebooks
+      #- ./data:/home/jovyan/project/data
+      
+      # Keeping the local git and image git repo in sync
+      #- ./.git:/home/jovyan/project/.gig
+      
+      # Mounting the project dir to the local git repo dir to keep local in sync with remote work
+      - ./:home/jovyan/project
+
       # This ensures we can just have the key in one central location for local and on docker
       # If this image ends up being pushed to the cloud, then the file must be copied.
       - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro
     environment:
       - GRANT_SUDO=yes
+      - JUPYTER_ENABLE_LAB=yes
     ports:
       - "8558:8558"

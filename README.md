@@ -1,4 +1,4 @@
-# Overview
+# Docker Use Overview
 This is a Data Science pyspark project creator. It creates a standard docker environment running jupyterlab and pyspark 3.0.
 
 Creating a repo from this template will allow the jupyter instance to already by connected to a remote github repo so all work can be easily version controlled in github.
@@ -14,18 +14,40 @@ Steps
 
 This will create a docker image with the same name as the repo created and cloned locally. Now you can access JupyterLab where the home drive mirrors the project drive from the local OS.
 
-During the build a build, this readme will be replaced with an empty readme and git will already be initialized. You will be able to open a jupyter notebook and freely run spark. 
+## Building across devices
+Once you make changes to your code, git commit and push to github, all code will be synced between your local repo, the dockerized repo and the github repo. If you clone the repo to work from another device, you simply just have to run `sh ./setup-compose.sh` again, and the image will build. This is the purpose of the following contents which **should not be modified**:
+    * Dockerfile
+    * docker-compose.yml.tmpl
+    * setup-compose.sh
+    * .dockerignore
+    * extras/
 
-# Credentials.
+## Credentials.
 
 In order for access to AWS services, you must have the `~/.aws/credentials` on your local environment. The Docker instance has mounted this file as an external volume, so as you update your credentials locally, they will be live on your docker instance. This file is **not editable** from your docker instance, and only editable from your local OS.
 
 
+# New Project Overview
+
+Once the docker image has been built above, then the following should be followed to get the notebook set up with table of contents extension and to understand how git is managed.
+
+## Getting Started
+Git has already been initialized. JupyterLab's home directory is mirroring root project directory from the local OS. git
+
+Create notebooks in the notebooks directory. In this directory there are some example notebooks to familiarize with good ways to get started using pyspark in a jupyter environment.
+
+A good place to start is going to `notebooks/GETTING STARTED`
+
+## TO DO:
+
+Must go install jupyterlab/toc. Choose the extensions icon from the left sidebar in JupyterLab. Enable 3rd party extensions and install jupyterlab/toc. After installing you'll need to do a rebuild jupyterlab, a message will inform you. 
 
 
+Select Settings in the top menu bar and go to "Advanced Settings" and choose Table of Contents. Set this attribute in to override the default non collapsible behavior of the table of contents extension. 
+`{"collapsibleNotebooks": true}`
 
 
-
+# Resources
 
 https://medium.com/@ntruong/jupyterlab-setup-for-my-data-team-84e5724d1bea
 

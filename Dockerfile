@@ -14,20 +14,31 @@ RUN apt-get update && apt-get install -y locales \
 # Make the project directory and copy required files and dirs under it.
 RUN mkdir /home/jovyan/project/
 
-# Git Repo
+###
+# These copies below ensure we get our github structure to match
+# As well as maintain docker build requirements so we can clone the 
+# Git repo locally and build a docker image based on the current state 
+# of the repo.
+# the Notebooks and data directories will be mounted to local drive
+# so any edits to these dirs in the docker image will be live in the local OS 
+##
+
+# Move Git Repo to project dir
 COPY --chown=$NB_UID:$NB_UID ./.git /home/jovyan/project/.git
 COPY --chown=$NB_UID:$NB_UID ./.gitignore /home/jovyan/project/
 
-# Docker files
+# Docker Compose Dependent files
 COPY --chown=$NB_UID:$NB_UID ./Dockerfile /home/jovyan/project/
-COPY --chown=$NB_UID:$NB_UID ./docker-compose.yml /home/jovyan/project/
+COPY --chown=$NB_UID:$NB_UID ./docker-compose.yml.tmpl /home/jovyan/project/
+COPY --chown=$NB_UID:$NB_UID ./extras /home/jovyan/project/extras
+COPY --chown=$NB_UID:$NB_UID ./setup-compose.sh /home/jovyan/project/
 
 # Analysis Dirs, notebooks and data
 COPY --chown=$NB_UID:$NB_UID ./data/ /home/jovyan/project/data
 COPY --chown=$NB_UID:$NB_UID ./notebooks /home/jovyan/project/notebooks
 
 # Python requirements.txt
-COPY --chown=$NB_UID:$NB_UID requirements.txt /home/jovyan/project/
+COPY --chown=$NB_UID:$NB_UID ./requirements.txt /home/jovyan/project/
 
 # Custom styling
 RUN mkdir -p /home/jovyan/.jupyter/custom
@@ -36,9 +47,8 @@ COPY --chown=$NB_UID:$NB_UID extras/custom/custom.css /home/jovyan/.jupyter/cust
 # Add config to Jupyter notebook
 COPY --chown=$NB_UID:$NB_UID extras/jupyter/jupyter_notebook_config.py /home/jovyan/.jupyter/
 
-# Removes the docker readme details and creates readme for the data science project.
-RUN echo "converting README"
-COPY --chown=$NB_UID:$NB_UID ./extras/README.md /home/joyvan/project/README.md
+# Copy readme
+COPY --chown=$NB_UID:$NB_UID ./README.md /home/joyvan/project/README.md
 
 # Make r/w for all
 USER root
