@@ -86,4 +86,4 @@ RUN chmod -R 777 /home/jovyan/
 USER $NB_UID
 
 # Run the notebook
-CMD ["/opt/conda/bin/jupyter", "lab", "--allow-root", "--port", "8558"]
+#CMD ["/opt/conda/bin/jupyter", "lab", "--allow-root", "--port", "8558"]
