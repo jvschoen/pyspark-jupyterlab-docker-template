@@ -1,9 +1,13 @@
 # Docker Use Overview
 This is a Data Science pyspark project creator. It creates a standard docker environment running jupyterlab and pyspark 3.0.
 
-Creating a repo from this template will allow the jupyter instance to already by connected to a remote github repo so all work can be easily version controlled in github.
+Creating a repo from this template will allow you to work locally to develop pyspark-driven research.
 
-When in jupyterlab, there is a folder labeled `project` which mirrors the github repo mentioned above. Work from the project folder and your work will be tracked in the project's github repo
+When in jupyterlab, there is a folder labeled `notebooks` which mirrors the local jupyter/notebooks dir. Work from the noteoboks folder in juptyer lab and your work will be synced to your local instance, and thus available for git to track. 
+
+## Github
+
+You will not be able to access the git repo from the jupyter lab instance, but as long as your work takes place in the notebook directory on jupyter lab, then your files will be saved locally as well. You must run git commands from your local computer to push and pull locally and thus have access to the files in your jupyter docker container.
 
 ## Steps
 1. Create a new Github Repo from this template
@@ -24,28 +28,44 @@ Once you make changes to your code, git commit and push to github, all code will
 
 ## Credentials.
 
+### AWS
 In order for access to AWS services, you must have the `~/.aws/credentials` on your local environment. The Docker instance has mounted this file as an external volume, so as you update your credentials locally, they will be live on your docker instance. This file is **not editable** from your docker instance, and only editable from your local OS.
 
+### Twitter
+If you are testing the Twitter sections of the notebook, you must first have developer api keys and access tokens. You can apply for one [here](https://developer.twitter.com/en/apply-for-access). The way this data is accessed is from your local home directory in a subdir called `.secrets`. Please create this directory and create a json file (`$HOME/.secrets/twitter.json`) with the following structure:
+
+```json
+{
+    "api_key": "API KEY from twitter",
+    "api_secret_key": "API SECRET KEY from twitter",
+    "bearer_token": "BEARER TOKEN FOR curl Access",
+    "access_token": "ACCESS TOKEN",
+    "access_token_secret": "ACCESS TOKEN SECRET"
+}
+```
+Some documentation for tweepy will use different naming for these keys:
+```
+CONSUMER_KEY = API_KEY
+CONSUMER_SECRET = API_SECRET_KEY
+CONSUMER_TOKEN = ACCESS_TOKEN
+CONSUMER_TOKEN_SECRET = ACCESS_TOKEN_SECRETD
+```
+
+This file will be accessible as a volume in the docker container with read-only access
 
 # New Project Overview
 
 Once the docker image has been built above, then the following should be followed to get the notebook set up with table of contents extension and to understand how git is managed.
 
 ## Getting Started
-Git has already been initialized. JupyterLab's home directory is mirroring root project directory from the local OS. git
 
-Create notebooks in the notebooks directory. In this directory there are some example notebooks to familiarize with good ways to get started using pyspark in a jupyter environment.
+**Create notebooks in the notebooks directory**. Anything in the root dir of the jupyter lab instance **will not be synced locally** and thus not able to be saved locally and pushed to github. In this directory there are some example notebooks to familiarize with good ways to get started using pyspark in a jupyter environment.
 
 A good place to start is going to `notebooks/GETTING STARTED`
 
 ## TO DO:
 
-Must go install jupyterlab/toc. Choose the extensions icon from the left sidebar in JupyterLab. Enable 3rd party extensions and install jupyterlab/toc. After installing you'll need to do a rebuild jupyterlab, a message will inform you. 
-
-
-Select Settings in the top menu bar and go to "Advanced Settings" and choose Table of Contents. Set this attribute in to override the default non collapsible behavior of the table of contents extension. 
-`{"collapsibleNotebooks": true}`
-
+You may be prompted to re build jupyter lab, this is fine just click build.
 
 # Resources
 
